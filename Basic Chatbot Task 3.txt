@@ -1,0 +1,70 @@
+pip install nltk
+import nltk
+from nltk.chat.util import Chat, reflections
+
+# Download NLTK resources
+nltk.download('punkt')
+pairs = [
+    [
+        r"(hi|hello|hey|hola|howdy)",
+        ["Hello! How can I assist you today?", "Hi there! How are you?", "Hey! What's up?"]
+    ],
+    [
+        r"what is your name ?",
+        ["I am a chatbot created to assist you. You can call me Chatbot!"]
+    ],
+    [
+        r"how are you ?",
+        ["I'm just a bunch of code, but I'm functioning as expected! How about you?"]
+    ],
+    [
+        r"what do you do ?",
+        ["I'm here to chat with you and help answer any questions you have."]
+    ],
+    [
+        r"who created you ?",
+        ["I was created by a developer using Python and NLTK."]
+    ],
+    [
+        r"bye|exit|quit",
+        ["Goodbye! Have a great day!", "Bye! Take care!"]
+    ],
+    [
+        r"(.*)",
+        ["I'm sorry, I didn't understand that. Could you please rephrase?"]
+    ]
+]
+
+# Reflections is a dictionary that helps in converting pronouns (e.g., "I" to "you", "are" to "am")
+reflections = {
+    "i am": "you are",
+    "i was": "you were",
+    "i": "you",
+    "i'd": "you would",
+    "i've": "you have",
+    "i'll": "you will",
+    "my": "your",
+    "you are": "I am",
+    "you were": "I was",
+    "you've": "I have",
+    "you'll": "I will",
+    "your": "my",
+    "yours": "mine",
+    "you": "me",
+    "me": "you"
+}
+def chatbot():
+    print("Chatbot: Hi! I am your friendly chatbot. Type 'quit' to exit.")
+    chat = Chat(pairs, reflections)
+    chat.converse()
+if __name__ == "__main__":
+    chatbot()
+Chatbot: Hi! I am your friendly chatbot. Type 'quit' to exit.
+> hello
+Chatbot: Hello! How can I assist you today?
+> what is your name ?
+Chatbot: I am a chatbot created to assist you. You can call me Chatbot!
+> who created you ?
+Chatbot: I was created by a developer using Python and NLTK.
+> bye
+Chatbot: Goodbye! Have a great day!
